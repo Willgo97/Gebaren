@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_naam">Gestures</string>
+    <string name="toegankelijkheid_uitleg">Gestures only uses accessibility to open the camera, lock the screen or take a screenshot when you shake, twist or tap the back. It does not read screen content and has no internet access.</string>
+
+    <string name="gebaar_schudden">Shake</string>
+    <string name="gebaar_schudden_uitleg">Shake firmly back and forth</string>
+    <string name="gebaar_draaien">Twist</string>
+    <string name="gebaar_draaien_uitleg">Twist your wrist twice, quickly</string>
+    <string name="gebaar_dubbeltik">Double tap</string>
+    <string name="gebaar_dubbeltik_uitleg">Tap the back of the phone twice</string>
+
+    <string name="actie_niets">Nothing</string>
+    <string name="actie_zaklamp">Flashlight on/off</string>
+    <string name="actie_camera">Open camera</string>
+    <string name="actie_media">Play/pause music</string>
+    <string name="actie_vergrendelen">Lock screen</string>
+    <string name="actie_schermafbeelding">Take screenshot</string>
+
+    <string name="trilling_uit">Off</string>
+    <string name="trilling_normaal">Normal</string>
+    <string name="trilling_sterk">Strong</string>
+    <string name="trilling_extra">Extra strong</string>
+
+    <string-array name="gevoeligheid_standen">
+        <item>low</item>
+        <item>fairly low</item>
+        <item>normal</item>
+        <item>fairly high</item>
+        <item>high</item>
+    </string-array>
+
+    <string name="status_actief">Active</string>
+    <string name="status_laatste">Last recognised: %1$s at %2$s</string>
+    <string name="status_nog_niets">No gesture recognised yet</string>
+    <string name="status_uit">Off</string>
+    <string name="status_uit_uitleg">Turn on Gestures under Accessibility → Downloaded apps.</string>
+    <string name="naar_toegankelijkheid">Open Accessibility</string>
+    <string name="niet_beschikbaar">Not available on this device</string>
+    <string name="gevoeligheid">Sensitivity: %1$s</string>
+    <string name="schud_aantal">Shakes needed</string>
+    <string name="schud_1">1×</string>
+    <string name="schud_2">2×</string>
+    <string name="trilling_titel">Vibrate on recognition</string>
+    <string name="xiaomi_titel">Xiaomi/HyperOS</string>
+    <string name="xiaomi_uitleg">In App info, turn on Autostart and set Battery saver to No restrictions, otherwise the system stops Gestures after a while.</string>
+    <string name="app_info_openen">Open App info</string>
+
+    <string name="melding_kanaal">Gestures active</string>
+    <string name="melding_titel">Gestures is listening</string>
+</resources>

@@ -1,0 +1,15 @@
+# Bouwsels
+build/
+app/build/
+.gradle/
+.kotlin/
+*.apk
+*.aab
+
+# Machine-specifiek
+local.properties
+
+# Ondertekensleutel — hoort niet in een repository
+*.jks
+*.keystore
+keystore.properties

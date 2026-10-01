@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gebaren — download</title>
+<meta name="description" content="Moto Actions voor elke Android-telefoon: schudden voor de zaklamp, draaien voor de camera.">
+<style>
+:root{ --ink:#10171c; --muted:#5e6a72; --card:#ffffff; --bg:#edf1f8; --accent:#1f5fbf;
+       --lijn:rgba(0,0,0,.10); }
+@media (prefers-color-scheme:dark){
+  :root{ --ink:#e6ebef; --muted:#9aa4ac; --card:#141a22; --bg:#0b0f14; --accent:#8ab4ff;
+         --lijn:rgba(255,255,255,.12); }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  display:flex;align-items:center;justify-content:center;min-height:100vh;padding:20px}
+.card{background:var(--card);border-radius:24px;max-width:460px;width:100%;
+  padding:30px 26px;box-shadow:0 1px 2px rgba(0,0,0,.06),0 12px 34px rgba(0,0,0,.10)}
+.logo{width:64px;height:64px;display:block;margin-bottom:20px}
+h1{font-size:27px;margin:0 0 4px;letter-spacing:-.02em}
+.tag{color:var(--muted);margin:0 0 20px}
+a.btn{display:block;text-align:center;background:var(--accent);color:#fff;
+  text-decoration:none;font-weight:700;font-size:17px;padding:16px;border-radius:16px}
+@media (prefers-color-scheme:dark){ a.btn{color:#0b1a33} }
+.meta{color:var(--muted);font-size:13px;margin-top:14px;text-align:center}
+.inhoud{margin:24px 0 0;padding:0;list-style:none;font-size:14.5px}
+.inhoud li{display:flex;gap:10px;padding:5px 0;border-bottom:1px solid var(--lijn)}
+.inhoud li:last-child{border-bottom:0}
+.inhoud b{white-space:nowrap;color:var(--accent);font-weight:600;min-width:92px}
+.note{margin-top:22px;padding-top:18px;border-top:1px solid var(--lijn);
+  color:var(--muted);font-size:13.5px}
+.note p{margin:0 0 9px}
+a{color:var(--accent)}
+</style>
+</head>
+<body>
+<div class="card">
+  <svg class="logo" viewBox="0 0 108 108" aria-hidden="true">
+    <rect width="108" height="108" rx="26" fill="#1f5fbf"/>
+    <path d="M44,32h20a4,4 0 0 1 4,4v36a4,4 0 0 1 -4,4h-20a4,4 0 0 1 -4,-4v-36a4,4 0 0 1 4,-4z" fill="#fff"/>
+    <path d="M45,37h18v30h-18z" fill="#1f5fbf"/>
+    <path d="M33,44q-4,10 0,20M27,40q-6,14 0,28M75,44q4,10 0,20M81,40q6,14 0,28"
+      stroke="#fff" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+  </svg>
+
+  <h1>Gebaren</h1>
+  <p class="tag">Moto Actions voor elke telefoon · Moto Actions for any phone</p>
+
+  <a class="btn" href="https://github.com/Willgo97/Gebaren/releases/latest/download/Gebaren.apk">
+    Download voor Android
+  </a>
+  <p class="meta">Altijd de nieuwste versie · Android 9 en hoger · ongeveer 2 MB</p>
+
+  <ul class="inhoud">
+    <li><b>Schudden</b> <span>zaklamp aan en uit</span></li>
+    <li><b>Draaien</b> <span>camera open, ook vanaf het slotscherm</span></li>
+    <li><b>Dubbeltik</b> <span>op de achterkant, alleen op Xiaomi</span></li>
+    <li><b>Instelbaar</b> <span>actie, gevoeligheid en trilling per gebaar</span></li>
+  </ul>
+
+  <div class="note">
+    <p><strong>Blijft hij laden?</strong> Open deze pagina in Chrome in plaats van in
+      het schermpje van je camera-app: tik op de drie puntjes en kies
+      <em>Openen in browser</em>.</p>
+    <p>Android waarschuwt voor een <em>onbekende bron</em>. Dat klopt: de app is
+      ondertekend met een persoonlijke sleutel en gaat niet via de Play Store.
+      Sta installeren toe voor je browser en open het gedownloade bestand.</p>
+    <p><strong>Aanzetten:</strong> Toegankelijkheid → Gedownloade apps → Gebaren.
+      Is de schakelaar grijs? App-info → ⋮ → <em>Beperkte instellingen toestaan</em>.
+      Op Xiaomi ook Autostart aan en Accubesparing op <em>Geen beperkingen</em>.</p>
+    <p>Geen internet, geen account. Toegankelijkheid wordt alleen gebruikt om de
+      camera te openen, te vergrendelen of een schermafbeelding te maken.</p>
+    <p>Broncode en uitgaven: <a href="https://github.com/Willgo97/Gebaren">github.com/Willgo97/Gebaren</a></p>
+  </div>
+</div>
+</body>
+</html>

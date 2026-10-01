@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_naam">Gebaren</string>
+    <string name="toegankelijkheid_uitleg">Gebaren gebruikt toegankelijkheid alleen om de camera te openen, het scherm te vergrendelen of een schermafbeelding te maken wanneer je schudt, draait of op de achterkant tikt. De app leest geen scherminhoud en heeft geen internettoegang.</string>
+
+    <string name="gebaar_schudden">Schudden</string>
+    <string name="gebaar_schudden_uitleg">Flink heen en weer schudden</string>
+    <string name="gebaar_draaien">Draaien</string>
+    <string name="gebaar_draaien_uitleg">Twee keer snel je pols draaien</string>
+    <string name="gebaar_dubbeltik">Dubbeltik</string>
+    <string name="gebaar_dubbeltik_uitleg">Twee keer op de achterkant tikken</string>
+
+    <string name="actie_niets">Niets</string>
+    <string name="actie_zaklamp">Zaklamp aan/uit</string>
+    <string name="actie_camera">Camera openen</string>
+    <string name="actie_media">Muziek afspelen/pauzeren</string>
+    <string name="actie_vergrendelen">Scherm vergrendelen</string>
+    <string name="actie_schermafbeelding">Schermafbeelding maken</string>
+
+    <string name="trilling_uit">Uit</string>
+    <string name="trilling_normaal">Normaal</string>
+    <string name="trilling_sterk">Sterk</string>
+    <string name="trilling_extra">Extra sterk</string>
+
+    <string-array name="gevoeligheid_standen">
+        <item>laag</item>
+        <item>vrij laag</item>
+        <item>normaal</item>
+        <item>vrij hoog</item>
+        <item>hoog</item>
+    </string-array>
+
+    <string name="status_actief">Actief</string>
+    <string name="status_laatste">Laatst herkend: %1$s om %2$s</string>
+    <string name="status_nog_niets">Nog geen gebaar herkend</string>
+    <string name="status_uit">Staat uit</string>
+    <string name="status_uit_uitleg">Zet Gebaren aan bij Toegankelijkheid → Gedownloade apps.</string>
+    <string name="naar_toegankelijkheid">Naar Toegankelijkheid</string>
+    <string name="niet_beschikbaar">Niet beschikbaar op dit toestel</string>
+    <string name="gevoeligheid">Gevoeligheid: %1$s</string>
+    <string name="schud_aantal">Aantal keer schudden</string>
+    <string name="schud_1">1×</string>
+    <string name="schud_2">2×</string>
+    <string name="trilling_titel">Trilling bij herkennen</string>
+    <string name="xiaomi_titel">Xiaomi/HyperOS</string>
+    <string name="xiaomi_uitleg">Zet bij de app-info Autostart aan en Accubesparing op Geen beperkingen, anders stopt het systeem Gebaren na een tijdje.</string>
+    <string name="app_info_openen">App-info openen</string>
+
+    <string name="melding_kanaal">Gebaren actief</string>
+    <string name="melding_titel">Gebaren luistert</string>
+</resources>
