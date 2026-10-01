@@ -37,6 +37,7 @@ class GebarenService : AccessibilityService() {
     private var kijkt = false
     private var laatsteDubbeltik = 0L
     private var rustTot = 0L
+    private var inRust = false
 
     override fun onServiceConnected() {
         sm = getSystemService(SensorManager::class.java)
@@ -83,6 +84,7 @@ class GebarenService : AccessibilityService() {
                     herkend(Gebaar.DUBBELTIK)
                 }
             } else {
+                if (inRust) rustTot = SystemClock.elapsedRealtime() + STIL_NA_GEBAAR_MS
                 kijkEvenOfHetEenGebaarIs()
             }
         }
@@ -123,10 +125,15 @@ class GebarenService : AccessibilityService() {
     }
 
     private fun beoordeel() {
-        if (SystemClock.elapsedRealtime() < rustTot) return
+        if (SystemClock.elapsedRealtime() < rustTot) {
+            herkenner.vergeetAllesTotNu()
+            return
+        }
+        inRust = false
         val g = herkenner.beoordeel(SystemClock.elapsedRealtimeNanos(), schudGevoeligheid, draaiGevoeligheid, instellingen.schudAantal) ?: return
         herkenner.vergeetAllesTotNu()
-        rustTot = SystemClock.elapsedRealtime() + RUST_NA_GEBAAR_MS
+        inRust = true
+        rustTot = SystemClock.elapsedRealtime() + STIL_NA_GEBAAR_MS
         herkend(g)
     }
 
@@ -179,6 +186,6 @@ class GebarenService : AccessibilityService() {
         private const val DUBBELTIK_ONDERDRUKKING_NS = 800_000_000L
         private const val KIJKDUUR_MS = 1_200L
         private const val FLUSH_INTERVAL_MS = 250L
-        private const val RUST_NA_GEBAAR_MS = 1_500L
+        private const val STIL_NA_GEBAAR_MS = 1_000L
     }
 }
