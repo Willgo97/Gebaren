@@ -74,4 +74,15 @@ class HerkennerTest {
         assertNull(herkennerMetAnderhalveSecondeOp50Hz(eenKeerHeenEnTerug, stil).beoordeel(nu, schudGevoeligheid = 3, draaiGevoeligheid = null, schudAantal = 2))
         assertEquals(Gebaar.SCHUDDEN, herkennerMetAnderhalveSecondeOp50Hz(eenKeerHeenEnTerug, stil).beoordeel(nu, schudGevoeligheid = 3, draaiGevoeligheid = null, schudAantal = 1))
     }
+
+    @Test fun snelTrillenZonderEchteHoekIsGeenDraai() {
+        val h = herkennerMetAnderhalveSecondeOp50Hz(rechtopInRust) { t -> Triple(1f, (8 * sin(2 * PI * 8 * t)).toFloat(), 1f) }
+        assertNull(h.beoordeel(nu, schudGevoeligheid = null, draaiGevoeligheid = 3))
+    }
+
+    @Test fun kleineDraaiTeltOpHogeGevoeligheidWelMaarOpNormaalNiet() {
+        val klein = { t: Double -> Triple(1f, (6 * sin(2 * PI * 4 * t)).toFloat(), 1f) }
+        assertNull(herkennerMetAnderhalveSecondeOp50Hz(rechtopInRust, klein).beoordeel(nu, schudGevoeligheid = null, draaiGevoeligheid = 3))
+        assertEquals(Gebaar.DRAAIEN, herkennerMetAnderhalveSecondeOp50Hz(rechtopInRust, klein).beoordeel(nu, schudGevoeligheid = null, draaiGevoeligheid = 5))
+    }
 }

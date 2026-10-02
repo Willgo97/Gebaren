@@ -16,20 +16,54 @@ class Herkenner {
 
     fun beoordeel(nu: Long, schudGevoeligheid: Int?, draaiGevoeligheid: Int?, schudAantal: Int = 2): Gebaar? {
         val vanaf = maxOf(nu - VENSTER_NS, niksVoor)
-        if (draaiGevoeligheid != null && isDraaien(gyro.sinds(vanaf), DRAAI_DREMPEL_RAD_S[stand(draaiGevoeligheid)])) return Gebaar.DRAAIEN
-        if (schudGevoeligheid != null && isSchudden(accel.sinds(vanaf), SCHUD_DREMPEL_MS2[stand(schudGevoeligheid)], schudAantal)) return Gebaar.SCHUDDEN
+        if (draaiGevoeligheid != null) {
+            val s = stand(draaiGevoeligheid)
+            if (isDraaien(gyro.sinds(vanaf), DRAAI_DREMPEL_RAD_S[s], MIN_DRAAIHOEK_RAD[s])) return Gebaar.DRAAIEN
+        }
+        if (schudGevoeligheid != null) {
+            val waarden = accel.sinds(vanaf).map { it.waarde }
+            if (isSchudden(waarden, SCHUD_DREMPEL_MS2[stand(schudGevoeligheid)], schudAantal)) return Gebaar.SCHUDDEN
+        }
         return null
     }
 
     private fun stand(gevoeligheid: Int) = (gevoeligheid - 1).coerceIn(0, 4)
 
-    private fun isDraaien(g: List<FloatArray>, drempel: Float): Boolean {
+    private fun isDraaien(g: List<Monster>, minSnelheid: Float, minHoek: Float): Boolean {
         if (g.size < 10) return false
         val draaiingPerAs = FloatArray(3)
-        for (m in g) for (i in 0..2) draaiingPerAs[i] += abs(m[i])
+        for (m in g) for (i in 0..2) draaiingPerAs[i] += abs(m.waarde[i])
         val dwars = (0..2).filter { it != LENGTEAS }.maxOf { draaiingPerAs[it] }
         if (draaiingPerAs[LENGTEAS] < DRAAI_OVERHEERSING * dwars) return false
-        return wisselingen(g, LENGTEAS, drempel) >= 3
+        val echteDraaien = draaibewegingen(g).filter { abs(it.hoek) >= minHoek && it.piek >= minSnelheid }
+        return wisselingen(echteDraaien.map { it.hoek }) >= 3
+    }
+
+    private class Draaibeweging(var hoek: Float = 0f, var piek: Float = 0f)
+
+    private fun draaibewegingen(g: List<Monster>): List<Draaibeweging> {
+        val uit = mutableListOf(Draaibeweging())
+        for (k in 1 until g.size) {
+            val snelheid = g[k].waarde[LENGTEAS]
+            val huidige = uit.last()
+            if (abs(snelheid) > STILSTAND_RAD_S && huidige.hoek != 0f && (snelheid > 0) != (huidige.hoek > 0)) {
+                uit += Draaibeweging()
+            }
+            val dt = (g[k].tijd - g[k - 1].tijd) / 1e9f
+            uit.last().hoek += snelheid * dt
+            uit.last().piek = maxOf(uit.last().piek, abs(snelheid))
+        }
+        return uit
+    }
+
+    private fun wisselingen(hoeken: List<Float>): Int {
+        var aantal = 0
+        var vorige = 0f
+        for (h in hoeken) if (aantal == 0 || (h > 0) != (vorige > 0)) {
+            aantal++
+            vorige = h
+        }
+        return aantal
     }
 
     private fun isSchudden(a: List<FloatArray>, drempel: Float, aantal: Int): Boolean {
@@ -61,6 +95,8 @@ class Herkenner {
         return aantal
     }
 
+    private class Monster(val tijd: Long, val waarde: FloatArray)
+
     private class Ring(val grootte: Int) {
         private val tijden = LongArray(grootte)
         private val waarden = Array(grootte) { FloatArray(3) }
@@ -76,11 +112,11 @@ class Herkenner {
 
         fun laatste(): Long = if (aantal == 0) 0L else tijden[(volgende - 1 + grootte) % grootte]
 
-        fun sinds(vanaf: Long): List<FloatArray> {
-            val uit = ArrayList<FloatArray>(aantal)
+        fun sinds(vanaf: Long): List<Monster> {
+            val uit = ArrayList<Monster>(aantal)
             for (k in 0 until aantal) {
                 val i = (volgende - aantal + k + grootte) % grootte
-                if (tijden[i] >= vanaf) uit += waarden[i]
+                if (tijden[i] >= vanaf) uit += Monster(tijden[i], waarden[i])
             }
             return uit
         }
@@ -91,6 +127,8 @@ class Herkenner {
         const val VENSTER_NS = 1_500_000_000L
         private const val VENSTER_MONSTERS = 300
         private val DRAAI_DREMPEL_RAD_S = floatArrayOf(6f, 5f, 4f, 3f, 2.5f)
+        private val MIN_DRAAIHOEK_RAD = floatArrayOf(60f, 50f, 40f, 30f, 25f).map { Math.toRadians(it.toDouble()).toFloat() }
+        private const val STILSTAND_RAD_S = 0.5f
         private const val DRAAI_OVERHEERSING = 1.5f
         private val SCHUD_DREMPEL_MS2 = floatArrayOf(25f, 20f, 15f, 11f, 8f)
     }
